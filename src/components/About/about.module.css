@@ -1,0 +1,20 @@
+.wrapper {
+    background-color: #ffffff;
+    padding: 91px 0 169px;
+}
+.container {
+    width: 90%;
+    margin: auto;
+    align-items: center;
+}
+.title {
+    font-size: 64px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 150px;
+}
+.descr {
+    font-size: 48px;
+    padding-left: 950px;
+    text-decoration-line: underline;
+}

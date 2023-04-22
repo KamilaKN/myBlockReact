@@ -1,0 +1,16 @@
+footer {
+    background-color: #bf94e8;
+    padding: 90px 0 90px;
+}
+.container {
+    width: 90%;
+    margin: auto;
+}
+.title {
+    font-size: 64px;
+    font-weight: 700;
+}
+.footerImg img {
+    width: 5%;
+    margin: 40px 50px 40px 0 ;
+}

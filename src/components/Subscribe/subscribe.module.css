@@ -1,0 +1,32 @@
+.wrapper {
+    background-color: #ffffff;
+    padding: 71px 0 93px;
+}
+.container {
+    width: 90%;
+    margin: auto;
+    align-items: center;
+}
+.title {
+    font-weight: 400;
+    font-size: 36px;
+    text-align: center;
+    padding:  0 280px 75px ;
+}
+.subscribe {
+   margin-left: 460px;
+}
+.input {
+    background: #C4C4C4;
+    color: #ffffff;
+	padding: 10px 10px ;
+	width: 35%;
+    border: none;
+    outline: none;
+}
+.btn {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 30px;
+    border: none;
+}
