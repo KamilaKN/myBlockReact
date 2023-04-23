@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer"
 import HomePage from "./pages/HomePage/HomePage"
 import PostPage from "./pages/PostsPage/PostPage";
+import SinglePostPage from "./pages/SinglePostPage/SinglePostPage";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage/>} />
                 <Route path="/posts" element={<PostPage/>}/>
+                <Route path="/post" element={<SinglePostPage/>}/>
             </Routes>
             <Footer/>
         </>
