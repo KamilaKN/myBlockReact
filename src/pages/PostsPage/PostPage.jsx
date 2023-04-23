@@ -23,6 +23,7 @@ const PostPage = () => {
                         title={post.title}
                         descr={post.descr}
                         date={post.createdAt}
+                        id={post._id}
                     />
                 );
             })}

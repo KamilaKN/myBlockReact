@@ -21,6 +21,10 @@
     font-size: 36px;
     font-weight: 700;
 }
+.link {
+    text-decoration: none;
+    color: black;
+}
 .descr {
     font-size: 24px;
 } 
