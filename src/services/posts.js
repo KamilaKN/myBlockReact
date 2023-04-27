@@ -1,13 +1,12 @@
 import axios from "axios";
-
-const URL = "https://gentle-ridge-36337.herokuapp.com/api/posts";
+import { rootApi } from "../api"
 //получить все посты
 const getPosts = () => {
-    return axios.get(URL);
+    return axios.get(rootApi + "/posts");
 };
 //получить один пост
 const getPost = (id) => {
-    return axios.get(`${URL}/${id}`);
+    return axios.get(`${rootApi}/posts/${id}`);
 };
 
 export default {
