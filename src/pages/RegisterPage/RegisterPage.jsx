@@ -5,8 +5,18 @@ import { authServices } from "../../services/auth";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as yup from "yup";
 
 const RegisterPage = () => {
+    const validationSchema = yup.object().shape({
+        email: yup
+            .string()
+            .required("Обязательное поле")
+            .email("Введите коректный email"),
+        username: yup.string().required("Обязательное поле"),
+        password: yup.string().required("Обязательное поле"),
+    });
+
     const { registration } = authServices();
     const formik = useFormik({
         initialValues: {
@@ -14,51 +24,41 @@ const RegisterPage = () => {
             password: "",
             username: "",
         },
+        validationSchema,
         onSubmit: async (values) => {
             try {
                 const { data } = await registration(values);
                 console.log(data._doc);
-                toast("Пользователь зарегистрирован")
+                toast("Пользователь зарегистрирован");
             } catch (err) {
                 toast("Ошибка");
-
             }
         },
     });
-
-    // const { registration } = authServices();
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    // const newUser = {
-    //     email,
-    //     username,
-    //     password,
-    // };
-    // try {
-    //     const { data } = await registration(newUser);
-    //     console.log(data._doc);
-    // } catch (err) {
-    //     console.log(err.response.data)
-    // }
-    // };
 
     return (
         <section className={styles.wrapper}>
             <h1 className={styles.title}>регистрация</h1>
             <form className={styles.form} onSubmit={formik.handleSubmit}>
                 <TextField
+                    error={formik.errors.email}
+                    helperText={formik.errors.email ? formik.errors.email : ""}
+                    onBlur={formik.handleBlur}
                     label="Ваш email"
                     variant="filled"
                     type="email"
                     name="email"
                     fullWidth
-                    required
                     style={{ marginBottom: "20px" }}
                     value={formik.values.email}
                     onChange={formik.handleChange}
                 />
                 <TextField
+                    error={formik.errors.username}
+                    helperText={
+                        formik.errors.username ? formik.errors.username : ""
+                    }
+                    onBlur={formik.handleBlur}
                     label="Ваш имя"
                     variant="filled"
                     type="text"
@@ -76,6 +76,11 @@ const RegisterPage = () => {
                     name="password"
                     fullWidth
                     required
+                    error={formik.errors.password}
+                    helperText={
+                        formik.errors.password ? formik.errors.password : ""
+                    }
+                    onBlur={formik.handleBlur}
                     style={{ marginBottom: "40px" }}
                     value={formik.values.password}
                     onChange={formik.handleChange}

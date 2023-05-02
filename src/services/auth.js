@@ -19,3 +19,14 @@ export const authServices = () => {
         registration,
     };
 };
+
+export const authServicesLogin = () => {
+    const login = (loginData) => {
+        return axios.post(`${rootApi}/auth/login`, loginData);
+    };
+    return {
+        login,
+    };
+};
+
+
