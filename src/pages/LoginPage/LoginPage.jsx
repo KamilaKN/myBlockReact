@@ -6,8 +6,27 @@ import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "../../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+    const [username, setUsername] = useState("");
+    const dispatch = useDispatch(); //useDispatch  позволяет вызвать action
+
+    const user = useSelector((state) => state.user.currentUser);
+
+    const navigate = useNavigate();
+
+
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/login");
+        }
+    }, []);
+
     const validationSchema = yup.object().shape({
         email: yup
             .string()
@@ -25,18 +44,20 @@ const LoginPage = () => {
         validationSchema,
         onSubmit: async (values) => {
             try {
-                const { data } = await login(values);
-                console.log(data);
+                const res = await login(values);
+                dispatch(loginSuccess(res.data))
+                setUsername(res.data.username);
+                // navigate("/login")
                 toast.success("Вы успешно авторизовались");
             } catch (err) {
-                toast(err.response.data);
+                toast(err);
             }
         },
     });
 
     return (
         <section className={styles.wrapper}>
-            <h1 className={styles.title}>Логин</h1>
+            <h1 className={styles.title}>Логин {username}</h1>
             <form className={styles.form} onSubmit={formik.handleSubmit}>
                 <TextField
                     label="Ваш email"
